@@ -7,3 +7,5 @@ export default function Score({ count }) {
         </>
     );
 }
+
+// xd
