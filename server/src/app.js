@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import pool from "./database/db.js";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -20,5 +21,7 @@ app.get("/users", async (req, res) => {
         res.status(500).json( { error: "Błąd servera " });
     }
 });
+
+app.use("/auth", authRoutes);
 
 export default app;
