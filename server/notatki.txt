@@ -2,9 +2,29 @@
 nazwa -> co robi
 
 komendy do konsoli
-npm install express pg cors dotenv
+npm install express pg cors dotenv bcrypt
 npm install -D nodemon
 
 
 
 https://console.neon.tech/app/projects/icy-dew-14632396?database=neondb
+
+
+przepływ danych:
+
+POST /api/auth/login
+        │
+        ▼
+auth.routes.js
+        │
+        ▼
+auth.controller.js
+        │
+        ▼
+auth.service.js
+        │
+        ▼
+user.repository.js
+        │
+        ▼
+PostgreSQL
