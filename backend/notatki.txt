@@ -1,2 +1,6 @@
 ?? TU ZAPISUJEMY ZMIENNE
 nazwa -> co robi
+
+komendy do konsoli
+npm install express pg cors dotenv
+npm install -D nodemon
