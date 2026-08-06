@@ -4,3 +4,7 @@ nazwa -> co robi
 komendy do konsoli
 npm install express pg cors dotenv
 npm install -D nodemon
+
+
+
+https://console.neon.tech/app/projects/icy-dew-14632396?database=neondb
