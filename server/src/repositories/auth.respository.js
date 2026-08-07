@@ -11,7 +11,7 @@ export async function findUserByEmail(email){
 
 export async function findUserByNick(nick){
     const result = await db.query(
-        `SELECT * FROM users WHERE nick = $1`,
+        `SELECT * FROM users WHERE username = $1`,
         [nick]
     );
     return result.rows[0];
@@ -25,14 +25,14 @@ export async function findUserById(id){
     return result.rows[0];
 }
 
-export async function createUser({ email, nick, passworHash }){
+export async function createUser({ email, nick, passwordHash }){
     const result = await db.query (
         `
-        INSERT INTO users(email, nick, password_hash)
+        INSERT INTO users(email, username, password_hash)
         VALUES($1, $2, $3)
-        RETURNING id, email, nick
+        RETURNING id, email, username
         `,
-        [email ,nick , passworHash]
+        [email ,nick , passwordHash]
     );
 
     return result.rows[0];

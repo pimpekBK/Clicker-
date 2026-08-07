@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
 import * as authRepository from "../repositories/auth.respository.js";
+import { hashPassword } from "../utils/hash.js";
 
 export async function register({ email, nick, password }) {
 
@@ -28,7 +28,8 @@ export async function register({ email, nick, password }) {
         };
     }
 
-    const passwordHash = await bcrypt.hash(password, 10);
+    const passwordHash = await hashPassword(password);
+    
 
     const user = await authRepository.createUser({
         email,
@@ -41,7 +42,7 @@ export async function register({ email, nick, password }) {
         message: "Konto zostało utworzone.",
         user: {
             id: user.id,
-            nick: user.nick,
+            username: user.username,
             email: user.email
         }
     };
