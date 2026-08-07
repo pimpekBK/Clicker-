@@ -7,6 +7,7 @@ import Mob1 from "../mobs/Mob1";
 export default function Clicker(){
     const[count, setcount] = useState(0);
     const[normalIF, setNormal] = useState(true);
+    const timeoutRef = useRef();
     
 
     function Setcount(){
@@ -15,16 +16,21 @@ export default function Clicker(){
         Hit();
     }
     function Hit(){
+        clearTimeout(timeoutRef.current);
         setNormal(false);
-        console.log(normalIF);
-        // setTimeout(() => {setNormal(true)},200);
-        console.log(normalIF);
+        console.log(normalIF);dd
+        setTimeout(() =>
+            {
+                setNormal(true);
+                console.log(normalIF);
+            },200);
+        
     }
     return(
         <>
         <button className={styles.container} onClick={Setcount}></button>
         <h3 className={styles.number}>{count}</h3>
-        <Mob1 normal={normalIF}></Mob1>
+        <Mob1 normal={normalIF}/>
         </>
     );
 }
