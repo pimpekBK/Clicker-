@@ -18,7 +18,6 @@ export default function Mob1(object){
     
     return(
         <>
-        {/* {console.log('Mob1')}; */}
         {console.log(object.hitting)};
         {hitting === true ? <img src={MobHiting} className="MobHiting" width="600" height="auto" ></img> : <img src={MobNeutral} className="MobNeutral" width="600" height="auto" ></img>};
         </>
