@@ -38,10 +38,50 @@ export async function createUser({ email, nick, passwordHash }){
     return result.rows[0];
 }
 
-export async function createSession(session){}
+export async function createSession(session) {
+    const result = await db.query(
+        `
+        INSERT INTO sessions (user_id, token, expires_at)
+        VALUES ($1, $2, $3)
 
-export async function findSession(token){}
+        ON CONFLICT (user_id)
+        DO UPDATE SET
+            token = EXCLUDED.token,
+            expires_at = EXCLUDED.expires_at
 
-export async function deleteSession(token){}
+        RETURNING user_id, token, expires_at
+        `,
+        [
+            session.userId,
+            session.token,
+            session.expiresAt
+        ]
+    );
+
+    return result.rows[0];
+}
+
+export async function findSession(token) {
+    const result = await db.query(
+        `
+        SELECT user_id, token, expires_at
+        FROM sessions
+        WHERE token = $1
+        `,
+        [token]
+    );
+
+    return result.rows[0];
+}
+
+export async function deleteSession(token) {
+    await db.query(
+        `
+        DELETE FROM sessions
+        WHERE token = $1
+        `,
+        [token]
+    );
+}
 
 export async function deleteAllSessions(userId){}
