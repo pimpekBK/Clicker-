@@ -15,7 +15,7 @@ export default function Clicker(){
         <>
         <button className={styles.container} onClick={Setcount}></button>
         <h3 className={styles.number}>{count}</h3>
-        <Mob1 hitting={count} ></Mob1>
+        <Mob1 trigger={count} hp={20}></Mob1>
         </>
     );
 }
