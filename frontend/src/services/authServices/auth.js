@@ -9,9 +9,13 @@ export async function login(email, password) {
         {
             email,
             password
+        },
+        {
+            auth: false
         }
     );
-    if ( data.success ) {
+
+    if (data.success) {
         saveToken(data.token);
         return true;
     }

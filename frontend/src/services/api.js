@@ -1,19 +1,23 @@
+import {getToken} from "./token";
+
 const API_URL = "http://localhost:3000";
 
-export async function apiRequest(url, options={}) {
+
+export async function apiRequest(url, options = {}) {
+    const token = getToken();
+
+    const headers = {
+        "Content-Type": "application/json",
+        ...options.headers
+    };
+
+    if (token && options.auth !== false) {
+        headers.Authorization = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${API_URL}${url}`, {
         ...options,
-
-        headers: {
-            "Content-Type": "application/json",
-
-            ...(token && {
-                Authorization: `Bearer ${token}`
-            }),
-
-            ...options.headers
-        },
-
+        headers,
         body: options.body
             ? JSON.stringify(options.body)
             : undefined
