@@ -28,3 +28,4 @@ Thumbs.db
 
 # IDE
 .idea/
+server/node_modules
