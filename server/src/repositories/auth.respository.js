@@ -25,6 +25,16 @@ export async function findUserById(id){
     return result.rows[0];
 }
 
+export async function findUserByToken(token) {
+    const result = await db.query(
+        `
+            SELECT * FROM sessions WHERE token = $1
+        `,[token]
+    );
+
+    return result.rows[0];
+}
+
 export async function createUser({ email, nick, passwordHash }){
     const result = await db.query (
         `
@@ -83,5 +93,7 @@ export async function deleteSession(token) {
         [token]
     );
 }
+
+
 
 export async function deleteAllSessions(userId){}

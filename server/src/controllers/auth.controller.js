@@ -40,15 +40,18 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
     try {
-        await authService.logout(req.user.token);
+        const result = await authService.logout(req.body.token);
 
-        res.json({
-            success: true
-        });
+        if (!result.success) {
+            return res.status(401).json(result);
+        }
+
+        res.json(result);
     } catch (err) {
         console.error(err);
         res.status(500).json({
-            success: false
+            success: false,
+            message: "Internal server error"
         });
     }
 }

@@ -102,8 +102,28 @@ export async function login({ email, password }) {
     
 }
 
-export async function logout() {
+export async function logout(token) {
+    const session = await authRepository.findUserByToken(token);
+    if(!session) {
+        return {
+            success: false,
+            message: "Nie znaleziono sesji"
+        }
+    }
 
+    const deleted = await authRepository.deleteSession(token);
+
+    if(deleted){
+        return {
+            success: false,
+            message: "Nie udało się usunąć sesji"
+        }
+    }
+
+    return {
+        success: true,
+        message: "Wylogowano poyślnie"
+    };
 }
 
 export async function authenticate(token) {
