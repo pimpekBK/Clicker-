@@ -11,7 +11,7 @@ router.post( "/login", authController.login );
 router.post( "/logout", authController.logout );
 
 // router.post( "/me", authController.me );
-// export default router;
+// 
 
 router.get("/me", authenticate, async (req, res) => {
 
@@ -21,3 +21,5 @@ router.get("/me", authenticate, async (req, res) => {
         success: true
     });
 });
+
+export default router;
