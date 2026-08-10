@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import styles from './LoginPage.module.css'
-import login from '../../services/auth'
+import {login, register} from '../../services/authServices/auth.js'
 
 export default function LoginPage(){
     const[bool, setbool] = useState(true)
@@ -9,10 +9,12 @@ export default function LoginPage(){
     const passwordRef = useRef()
 
     function SubmitLogin(){
-        login(emailRef.current.value , passwordRef.current.value)
+        console.log(login(emailRef.current.value , passwordRef.current.value));
+        
     }
-    function SubmitRegister(){
-        register(emailRef.current.value ,nickRef.current.value, passwordRef.current.value)
+    function SubmitRegister(){ 
+        console.log(register(emailRef.current.value ,nickRef.current.value, passwordRef.current.value));
+        
     }
 
     function ChangeBool(){
