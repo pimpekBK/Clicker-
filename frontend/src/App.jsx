@@ -1,10 +1,11 @@
-import Clicker from "./clicker/Clicker";
+import Clicker from "./components/clicker/Clicker";
+import LoginPage from './pages/login_page/LoginPage.jsx'
 
 export default function App(){
   return(
     <>
-    <h1 className="title">Napierdol Markowi</h1>
-    <Clicker></Clicker>
+    {/* <Clicker></Clicker> */}
+    <LoginPage />    
     </>
   );
 
