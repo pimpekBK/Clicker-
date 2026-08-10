@@ -20,12 +20,12 @@ export default function Mob1(object){
         }, 200);
 
         return () => clearTimeout(timer);
-          
+        
     },[object.trigger])
 
     if (hp >= 1){
         return(
-            <>    
+            <>
             <HpBarr trigger={object.trigger} hp={object.hp}/>
             {hitting === true ? <img src={MobHiting}  ></img> : <img src={MobNeutral}  width="600" height="auto" ></img>};
             </>
@@ -36,7 +36,7 @@ export default function Mob1(object){
             return(
                 <>
                     <img src={MobDead}></img>
-                </>  
-            );      
+                </>
+            );
         }
 }
