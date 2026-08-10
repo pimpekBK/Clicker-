@@ -1,8 +1,8 @@
 import { useState, useEffect} from "react";
 import HpBarr from './hp_barr/HpBarr.jsx'
-import MobNeutral from "../assets/mob1-neutral.png";
-import MobHiting from '../assets/mob1-hiting.png';
-import MobDead from '../assets/mob1-dead.png';
+import MobNeutral from "../../assets/mob1-neutral.png";
+import MobHiting from '../../assets/mob1-hiting.png';
+import MobDead from '../../assets/mob1-dead.png';
 import './Mob1.module.css';
 
 export default function Mob1(object){
@@ -26,7 +26,7 @@ export default function Mob1(object){
     if (hp >= 1){
         return(
             <>
-            <HpBarr trigger={object.trigger} hp={object.hp}/>
+            <HpBarr trigger={object.trigger} hp={hp}/>
             {hitting === true ? <img src={MobHiting}  ></img> : <img src={MobNeutral}  width="600" height="auto" ></img>};
             </>
             );
