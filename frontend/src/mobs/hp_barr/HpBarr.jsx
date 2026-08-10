@@ -7,7 +7,7 @@ export default function HpBarr(object){
 
     return(
         <>
-            <h2 className={styles.text}>hp {hp}</h2>
+            <h2 className={styles.text}> {object.hp}</h2>
         </>
     );
 }
