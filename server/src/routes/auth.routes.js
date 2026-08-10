@@ -1,6 +1,6 @@
 import express from "express";
 import * as authController from "../controllers/auth.controller.js";
-//import { authenticate } from "../middleware/auth.middleware.js";
+import { authenticate } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
@@ -10,4 +10,14 @@ router.post( "/login", authController.login );
 
 router.post( "/logout", authController.logout );
 
-export default router;
+// router.post( "/me", authController.me );
+// export default router;
+
+router.get("/me", authenticate, async (req, res) => {
+
+    console.log(req.token);
+
+    res.json({
+        success: true
+    });
+});
