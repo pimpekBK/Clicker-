@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import styles from './LoginPage.module.css'
-import {login, register} from '../../services/authServices/auth.js'
+import {login, logout, register} from '../../services/authServices/auth.js'
+import { getMe } from '../../services/userServices/user.js';
 
 export default function LoginPage(){
     const[bool, setbool] = useState(true)
@@ -25,6 +26,9 @@ export default function LoginPage(){
         //login
         return(
             <>
+                <button onClick={() => getMe()}>me</button>
+                <button onClick={() => logout()}>logout</button>
+
                 <div className={styles.loginbg}>
                     <h1 >Login</h1>
                     <div className={styles.bg2}>
@@ -57,4 +61,6 @@ export default function LoginPage(){
                 </div>
             </>
         );     
+
+        
 }

@@ -25,7 +25,8 @@ export async function findUserById(id){
     return result.rows[0];
 }
 
-export async function findUserByToken(token) {
+
+export async function findSessionByToken(token) {
     const result = await db.query(
         `
             SELECT * FROM sessions WHERE token = $1
@@ -33,6 +34,22 @@ export async function findUserByToken(token) {
     );
 
     return result.rows[0];
+}
+
+export async function findUserByToken(token) {
+    const session = await findSessionByToken(token);
+
+    if (!session){
+        return null;
+    }
+    
+    const result = await db.query(
+        `
+            SELECT * FROM users WHERE id = $1
+        `, [session.user_id]
+    );
+
+    return result.rows[0] || null;
 }
 
 export async function createUser({ email, nick, passwordHash }){
@@ -93,6 +110,8 @@ export async function deleteSession(token) {
         [token]
     );
 }
+
+
 
 
 

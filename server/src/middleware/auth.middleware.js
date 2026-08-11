@@ -38,6 +38,7 @@ export async function authenticate(req, res, next) {
         }
 
         req.userId = result.rows[0].user_id;
+        req.token = token;
 
         next();
 

@@ -101,8 +101,8 @@ export async function login({ email, password }) {
     return {
         success: true,
         user: {
-            id: user.id,
-            email: user.email,
+            // id: user.id,
+            // email: user.email,
             username: user.username,
             token: token
         }

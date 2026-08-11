@@ -8,18 +8,6 @@ router.post( "/register", authController.register );
 
 router.post( "/login", authController.login );
 
-router.post( "/logout", authController.logout );
-
-// router.post( "/me", authController.me );
-// 
-
-router.get("/me", authenticate, async (req, res) => {
-
-    console.log(req.token);
-
-    res.json({
-        success: true
-    });
-});
+router.post( "/logout", authenticate, authController.logout );
 
 export default router;
