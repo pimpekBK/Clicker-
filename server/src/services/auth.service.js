@@ -62,23 +62,31 @@ export async function register({ email, nick, password }) {
 }
 
 export async function login({ email, password }) {
+
+    console.log("LOGIN DATA:", email, password);
+
     const user = await authRepository.findUserByEmail(email);
 
-    if(!user) {
+    console.log("FOUND USER:", user);
+
+    if (!user) {
         return {
             success: false,
-            messge: "Nieprawidłowy email lub hasło"
-        }
+            message: "Nieprawidłowy email lub hasło"
+        };
     }
 
     const valid = await comaprePassword(password, user.password_hash);
 
-    if(!valid) {
+    console.log("PASSWORD VALID:", valid);
+
+    if (!valid) {
         return {
             success: false,
             message: "Nieprawidłowy email lub hasło"
-        }
+        };
     }
+
 
     const token = generateSessionToken();
     const expiresAt = getSessionExpiration(30);
