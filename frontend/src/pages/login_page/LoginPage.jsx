@@ -28,6 +28,7 @@ export default function LoginPage(){
             <>
                 <button onClick={() => getMe()}>me</button>
                 <button onClick={() => logout()}>logout</button>
+                <button>connect</button>
 
                 <div className={styles.loginbg}>
                     <h1 >Login</h1>

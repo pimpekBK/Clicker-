@@ -26,6 +26,17 @@ export async function apiRequest(url, options = {}) {
     return response.json();
 }
 
+
+/**
+ * Asks server for get function.
+ *
+ * @param {String} url - /url .
+ * @param {JSON} options - Opis parametru.
+ *
+ * @returns {JSON} Opis tego, co funkcja zwraca.
+ *
+ * @throws {Error} Kiedy funkcja rzuca błąd.
+ */
 export const get = (url, options = {}) =>
     apiRequest(url, {
         ...options,
@@ -51,3 +62,4 @@ export const del = (url, options = {}) =>
         ...options,
         method: "DELETE"
     });
+
