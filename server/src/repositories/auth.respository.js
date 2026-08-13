@@ -14,6 +14,9 @@ export async function findUserByNick(nick){
         `SELECT * FROM users WHERE username = $1`,
         [nick]
     );
+    if (result.rows.length === 0) {
+        return null;
+    }
     return result.rows[0];
 }
 
@@ -22,6 +25,9 @@ export async function findUserById(id){
         `SELECT * FROM users WHERE id = $1`,
         [id]
     );
+    if (result.rows.length === 0) {
+        return null;
+    }
     return result.rows[0];
 }
 
@@ -29,12 +35,24 @@ export async function findUserById(id){
 export async function findSessionByToken(token) {
     const result = await db.query(
         `
-            SELECT * FROM sessions WHERE token = $1
+            SELECT * FROM sessions WHERE token = $1 AND expires_at > NOW()
         `,[token]
     );
+    if (result.rows.length === 0) {
+        return null;
+    }
 
     return result.rows[0];
 }
+
+export async function findUserIdByToken(token) {
+    const result = await db.query(
+        ` SELECT user_id FROM sessions WHERE token = $1 AND expires_at > NOW()
+        `,[token]
+    );
+
+    return result.rows[0].user_id;
+};
 
 export async function findUserByToken(token) {
     const session = await findSessionByToken(token);

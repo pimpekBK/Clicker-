@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import styles from './LoginPage.module.css'
 import {login, logout, register} from '../../services/authServices/auth.js'
 import { getMe } from '../../services/userServices/user.js';
+import { connectToServer, disconnectFromServer, sendMessage } from '../../services/websocket.js';
 
 export default function LoginPage(){
     const[bool, setbool] = useState(true)
@@ -28,7 +29,9 @@ export default function LoginPage(){
             <>
                 <button onClick={() => getMe()}>me</button>
                 <button onClick={() => logout()}>logout</button>
-                <button>connect</button>
+                <button onClick={() => connectToServer()}>connect</button>
+                <button onClick={() => disconnectFromServer()}>disconect</button>
+                <button onClick={() => sendMessage("test")}>test message</button>
 
                 <div className={styles.loginbg}>
                     <h1 >Login</h1>

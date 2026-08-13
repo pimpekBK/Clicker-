@@ -1,3 +1,5 @@
+import { getToken } from "./token";
+
 let socket = null;
 
 export function connectToServer() {
@@ -10,6 +12,13 @@ export function connectToServer() {
 
     socket.onopen = () => {
         console.log("🟢 Połączono z WS");
+
+        const token = getToken();
+
+        socket.send(JSON.stringify({
+            type: "auth",
+            token
+        }));
     };
 
     socket.onmessage = (event) => {

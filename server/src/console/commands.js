@@ -11,12 +11,6 @@ export const commands = {
         `);
     },
 
-    rooms: async () => {
-        console.log("Rooms:");
-        // tutaj później np.:
-        // console.log(rooms);
-    },
-
     users: async () => {
         console.log("Users:");
         // tutaj pobierasz użytkowników
@@ -34,5 +28,10 @@ export const commands = {
         // await saveGame();
         // server.close();
         // process.exit(0);
+    },
+
+    say: async () => {
+        console.log("Say: ");
     }
+
 };
