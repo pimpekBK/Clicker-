@@ -2,6 +2,7 @@ const TOKEN_KEY = "token";
 
 export function saveToken(token) {
     localStorage.setItem(TOKEN_KEY, token);
+    //console.log("saved token: " + getToken());
 }
 
 export function getToken() {

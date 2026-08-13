@@ -40,7 +40,8 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
     try {
-        const result = await authService.logout(req.body.token);
+        const result = await authService.logout(req.token);
+        console.log(req.token);
 
         if (!result.success) {
             return res.status(401).json(result);
@@ -56,15 +57,15 @@ export async function logout(req, res) {
     }
 }
 
-export async function me(req, res) {
-    try {
-        const user = await authService.getUser(req.user.id);
+// export async function me(req, res) {
+//     try {
+//         const user = await authService.getUser(req.user.id);
 
-        res.json(user);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false
-        });
-    }
-}
+//         res.json(user);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({
+//             success: false
+//         });
+//     }
+// }

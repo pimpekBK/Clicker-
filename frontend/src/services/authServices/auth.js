@@ -16,7 +16,7 @@ export async function login(email, password) {
     );
 
     if (data.success) {
-        saveToken(data.token);
+        saveToken(data.user.token);
         return true;
     }
 
@@ -50,9 +50,11 @@ export async function logout() {
 
     if (data.success){
         removeToken();
+        console.log("wylogowano");
         return true;
     }
 
     console.log(data.message);
     return false;
 }
+
